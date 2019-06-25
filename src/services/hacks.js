@@ -3,7 +3,8 @@ import {
     GET_TOP_STORIES_URL,
     GET_HACK_URL,
     PAGE_SIZE,
-    HACKS_IDS_KEY
+    HACKS_IDS_KEY,
+    HACKS_KEY
 } from '../contants';
 
 // Services
@@ -31,11 +32,18 @@ async function processHacks() {
 }
 
 async function getOneHack(id) {
-    // 1. Get the hack from the HN API.
+    const hacks = getItem(HACKS_KEY);
+
+    if (hacks && hacks.length) {
+        const hack = hacks.find(hack => hack.id === id);
+
+        if (hack) {
+            return hack;
+        }
+    }
+
     const res = await fetch(`${GET_HACK_URL}/${id}.json`);
     const data = await res.json();
-
-    // 3. Return it.
     return data;
 }
 
@@ -47,14 +55,17 @@ async function getHacks(currentPage = 0) {
         return data;
     }
 
-    const start = currentPage * PAGE_SIZE;
-    const end = (PAGE_SIZE * currentPage) + PAGE_SIZE;
-    const range = ids.slice(start, end);
+    const multiplier = currentPage * PAGE_SIZE;
+    const range = ids.slice(multiplier, multiplier + PAGE_SIZE);
 
     for (let i = 0; i < range.length; i++) {
         const hack = await getOneHack(range[i]);
         data.push(hack);
     }
+
+    const hacks = getItem(HACKS_KEY);
+    const newHacks = [...hacks, ...data];
+    setItem(HACKS_KEY, newHacks);
 
     return data;
 }

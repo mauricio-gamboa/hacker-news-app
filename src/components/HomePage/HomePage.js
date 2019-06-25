@@ -5,7 +5,7 @@ import './HomePage.scss';
 
 //Services
 import {
-	getAllHacks,
+	getHacksIds,
 	getHacks
 } from '../../services/hacks';
 
@@ -18,13 +18,13 @@ function HomePage() {
 	const [currentPage, setCurrentPage] = useState(0);
 
 	useEffect(() => {
-		const getHacksFromAPI = async () => {
-			await getAllHacks();
+		const processData = async () => {
+			await getHacksIds();
 			const data = await getHacks(currentPage);
 			setHacks(prevState => [...prevState, ...data]);
 		};
 
-		getHacksFromAPI();
+		processData();
 	}, [currentPage]);
 
 	const hasHacks = hacks && hacks.length > 0;

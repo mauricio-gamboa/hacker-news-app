@@ -15,17 +15,18 @@ import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
 function HackPage({ match }) {
     const { id } = match.params;
+
     const [hack] = useState(() => getOneFromStorage(id));
     const [comments, setComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        const getCommentsFromAPI = async () => {
+        const processData = async () => {
             const data = await getComments(hack.kids, currentPage);
             setComments(prevState => [...prevState, ...data]);
         };
 
-        getCommentsFromAPI();
+        processData();
     }, [currentPage]);
 
     if (!hack) {

@@ -13,7 +13,7 @@ import {
     getItem
 } from './store';
 
-async function getAllHacks() {
+async function getHacksIds() {
     // Gets the tops hacks (only ids) from local storage
     let data = getItem(HACKS_IDS_KEY);
 
@@ -33,10 +33,7 @@ async function getAllHacks() {
 
 async function getOneHack(id) {
     // Gets the hack from the local storage (whole object)
-    const hacks = getItem(HACKS_KEY);
-    const hackFound = hacks &&
-        hacks.length &&
-        hacks.find(hack => hack.id === id);
+    const hackFound = getOneFromStorage(id);
 
     if (hackFound) {
         return hackFound;
@@ -81,7 +78,7 @@ async function getComments(commentsIds, currentPage = 0) {
     return comments;
 }
 
-async function getRange(array, delimiter) {
+async function getRange(array, chunck) {
     let range = [];
 
     if (!array.length) {
@@ -90,8 +87,8 @@ async function getRange(array, delimiter) {
 
     const data = [];
 
-    const multiplier = delimiter * PAGE_SIZE;
-    range = array.slice(multiplier, multiplier + PAGE_SIZE);
+    const pageChunk = chunck * PAGE_SIZE;
+    range = array.slice(pageChunk, pageChunk + PAGE_SIZE);
 
     for (let i = 0; i < range.length; i++) {
         const hack = await getOneHack(range[i]);
@@ -102,7 +99,7 @@ async function getRange(array, delimiter) {
 }
 
 export {
-    getAllHacks,
+    getHacksIds,
     getHacks,
     getOneFromStorage,
     getComments

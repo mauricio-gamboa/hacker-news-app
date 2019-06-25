@@ -1,4 +1,4 @@
-.mainButton {
+.loadMoreButton {
     color: #1c9d79;
     background-color: #e6fef7;
     border-color: #24c89a;
@@ -7,6 +7,7 @@
     border-radius: 8px;
     margin-top: 8px;
     width: 100%;
+    text-transform: capitalize;
     &:hover {
         color: #ff6600;
     }

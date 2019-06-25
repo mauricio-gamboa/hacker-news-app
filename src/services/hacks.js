@@ -72,7 +72,7 @@ async function getHacks(currentPage = 0) {
 
 function getOneFromStorage(id) {
     const hacks = getItem(HACKS_KEY);
-    const found = hacks.find(hack => parseInt(hack.id ) === parseInt(id));
+    const found = hacks.find(hack => parseInt(hack.id) === parseInt(id));
     return found;
 }
 

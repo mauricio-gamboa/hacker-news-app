@@ -32,8 +32,12 @@ function HomePage() {
 	return (
 		<div className='page'>
 			{hasHacks && <HacksList hacks={hacks} />}
-			{hasHacks && <LoadMoreButton
-				handleClick={() => setCurrentPage(currentPage + 1)} />}
+			{hasHacks &&
+				<LoadMoreButton
+					handleClick={() => setCurrentPage(currentPage + 1)}>
+					Load more hacks
+			</LoadMoreButton>
+			}
 		</div>
 	);
 }

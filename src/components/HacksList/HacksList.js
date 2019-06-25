@@ -17,10 +17,17 @@ function HacksList(props) {
 
     return (
         <div>
-            <h2>The latest hacker news:</h2>
+            <h2>The latest hacker news</h2>
             <ul className='hacksList'>
                 {hacks.map(hack => {
-                    return (<li key={hack.id}><Hack {...hack} /></li>);
+                    const hasComments = hack && hack.kids && hack.kids.length > 0;
+                    return (
+                        <li key={hack.id}>
+                            <Hack
+                                {...hack}
+                                hasComments={hasComments} />
+                        </li>
+                    );
                 })}
             </ul>
         </div>

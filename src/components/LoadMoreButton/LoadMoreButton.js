@@ -5,15 +5,16 @@ import './LoadMoreButton.scss';
 
 function LoadMoreButton(props) {
     const {
-        handleClick
+        handleClick,
+        children
     } = props;
 
     return (
         <button
             type='button'
-            className='mainButton hoverBuzzOut'
+            className='loadMoreButton'
             onClick={handleClick}>
-            Load More Hacks
+            {children}
         </button>
     );
 }

@@ -15,7 +15,8 @@ function Hack(props) {
         by,
         descendants,
         type,
-        id
+        id,
+        hasComments
     } = props;
 
     const [isVoted, setIsVoted] = useState(false);
@@ -44,8 +45,12 @@ function Hack(props) {
                 {title}
             </a>
             <div className='meta-data'>
-                {`${score} points by ${by} | `}
-                <Link to={`hack/${id}`}>{`${descendants} comments`}</Link>
+                {`${score} points by ${by}`}
+                {hasComments &&
+                    <span>
+                        {' | '}<Link to={`hack/${id}`}>{`${descendants} comments`}</Link>
+                    </span>
+                }
                 {`${url ? ' |' : ''} ${getHost(url)}`}
             </div>
         </div>

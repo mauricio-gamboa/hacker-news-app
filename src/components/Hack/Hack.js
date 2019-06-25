@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // CSS
 import './Hack.scss';
@@ -13,7 +14,8 @@ function Hack(props) {
         score,
         by,
         descendants,
-        type
+        type,
+        id
     } = props;
 
     const getHost = url => {
@@ -21,20 +23,24 @@ function Hack(props) {
     };
 
     return (
-        <a
+        <div
             className='hack hoverForward'
-            title={title}
-            href={url}
-            rel='noopener noreferrer'
-            target='_blank'>
-            <span className='title'>
+            title={title}>
+            <a
+                className='title'
+                title={title}
+                href={url}
+                rel='noopener noreferrer'
+                target='_blank'>
                 {type && <HackIcon type={type} />}
-                {` ${title}`}
-            </span>
-            <span className='meta-data'>
-                {`${score} points by ${by} | ${descendants} comments ${url ? '|' : ''} ${getHost(url)}`}
-            </span>
-        </a>
+                {title}
+            </a>
+            <div className='meta-data'>
+                {`${score} points by ${by} | `}
+                <Link to={`hack/${id}`}>{`${descendants} comments`}</Link>
+                {`${url ? ' |' : ''} ${getHost(url)}`}
+            </div>
+        </div>
     );
 }
 

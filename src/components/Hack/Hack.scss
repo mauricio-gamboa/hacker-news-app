@@ -1,38 +1,26 @@
 .hack {
-    text-decoration: none;
     padding: 16px;
     box-shadow: 0 2px 5px 0 rgba(19, 41, 104, .2);
     border-radius: 8px;
     background-color: white;
-    position: relative;
-    font-size: 14px;
-    display: block;
-    color: inherit;
     &:hover {
-        .title {
-            i {
-                color: #ff6600;
-            }
-        }
-    }
-    &>span {
-        display: block;
-        border-bottom: 1px solid #f1f2f6;
-        padding: 4px 0;
-        &:first-child {
-            padding-top: 0;
-        }
-        &:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        i {
+            color: #ff6600;
         }
     }
     .meta-data {
         font-size: 10px;
+        padding-top: 4px;
+        border-top: 1px solid #f1f2f6;
     }
     .title {
+        display: inline-block;
         position: relative;
         padding-left: 16px;
+        text-decoration: none;
+        color: inherit;
+        font-size: 14px;
+        padding-bottom: 4px;
         i {
             position: absolute;
             left: 0;

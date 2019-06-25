@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // CSS
-import './App.scss';
+import './HomePage.scss';
 
 //Services
 import {
@@ -13,10 +13,9 @@ import {
 import HacksList from '../HacksList/HacksList';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
-function App() {
+function HomePage() {
 	const [hacks, setHacks] = useState([]);
 	const [currentPage, setCurrentPage] = useState(0);
-
 
 	useEffect(() => {
 		const getHacksFromAPI = async () => {
@@ -39,4 +38,4 @@ function App() {
 	);
 }
 
-export default App;
+export default HomePage;

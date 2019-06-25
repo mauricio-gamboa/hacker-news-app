@@ -13,10 +13,10 @@ function Hack(props) {
         url,
         score,
         by,
-        descendants,
         type,
         id,
-        hasComments
+        hasComments,
+        kids
     } = props;
 
     const [isVoted, setIsVoted] = useState(false);
@@ -48,7 +48,7 @@ function Hack(props) {
                 {`${score} points by ${by}`}
                 {hasComments &&
                     <span>
-                        {' | '}<Link to={`hack/${id}`}>{`${descendants} comments`}</Link>
+                        {' | '}<Link to={`hack/${id}`}>{`${kids.length} comments`}</Link>
                     </span>
                 }
                 {`${url ? ' |' : ''} ${getHost(url)}`}

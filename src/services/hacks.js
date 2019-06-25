@@ -14,57 +14,37 @@ import {
 } from './store';
 
 async function getAllHacks() {
+    // Gets the tops hacks (only ids) from local storage
     let data = getItem(HACKS_IDS_KEY);
 
     if (data.length) {
         return data;
     }
 
+    // Gets the tops hacks (only ids) from the HN API
     const res = await fetch(GET_TOP_STORIES_URL);
     data = await res.json();
-    return data;
-}
 
-async function processHacks() {
-    const data = await getAllHacks();
+    // Saves the tops hacks (only ids) in local storage
     setItem(HACKS_IDS_KEY, data);
+
     return data;
 }
 
 async function getOneHack(id) {
+    // Gets the hack from the local storage (whole object)
     const hacks = getItem(HACKS_KEY);
+    const hackFound = hacks &&
+        hacks.length &&
+        hacks.find(hack => hack.id === id);
 
-    if (hacks && hacks.length) {
-        const hack = hacks.find(hack => hack.id === id);
-
-        if (hack) {
-            return hack;
-        }
+    if (hackFound) {
+        return hackFound;
     }
 
+    // Gets the hack from the HN API storage (whole object)
     const res = await fetch(`${GET_HACK_URL}/${id}.json`);
     const data = await res.json();
-    return data;
-}
-
-async function getHacks(currentPage = 0) {
-    const ids = getItem(HACKS_IDS_KEY);
-
-    if (!ids.length) {
-        return data;
-    }
-
-    const range = getRange(ids, currentPage);
-    const data = [];
-
-    for (let i = 0; i < range.length; i++) {
-        const hack = await getOneHack(range[i]);
-        data.push(hack);
-    }
-
-    const hacks = getItem(HACKS_KEY);
-    const newHacks = [...hacks, ...data];
-    setItem(HACKS_KEY, newHacks);
 
     return data;
 }
@@ -75,33 +55,54 @@ function getOneFromStorage(id) {
     return found;
 }
 
-async function getComments(commentsIds, currentPage = 0) {
-    const range = getRange(commentsIds, currentPage);
-    let comments = [];
+async function getHacks(currentPage = 0) {
+    const ids = getItem(HACKS_IDS_KEY);
 
-    for (let i = 0; i < range.length; i++) {
-        const comment = await getOneHack(range[i]);
-        comments.push(comment);
+    if (!ids.length) {
+        return [];
     }
+
+    const data = await getRange(ids, currentPage);
+    const hacks = getItem(HACKS_KEY);
+    const newHacks = [...hacks, ...data];
+
+    setItem(HACKS_KEY, newHacks);
+
+    return data;
+}
+
+async function getComments(commentsIds, currentPage = 0) {
+    if (!commentsIds.length) {
+        return [];
+    }
+
+    const comments = await getRange(commentsIds, currentPage);
 
     return comments;
 }
 
-function getRange(array, delimiter) {
+async function getRange(array, delimiter) {
     let range = [];
 
     if (!array.length) {
         return range;
     }
 
+    const data = [];
+
     const multiplier = delimiter * PAGE_SIZE;
     range = array.slice(multiplier, multiplier + PAGE_SIZE);
 
-    return range;
+    for (let i = 0; i < range.length; i++) {
+        const hack = await getOneHack(range[i]);
+        data.push(hack);
+    }
+
+    return data;
 }
 
 export {
-    processHacks,
+    getAllHacks,
     getHacks,
     getOneFromStorage,
     getComments

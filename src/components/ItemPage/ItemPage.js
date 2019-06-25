@@ -1,45 +1,44 @@
 import React, { useState, useEffect } from 'react';
 
 // CSS
-import './HackPage.scss';
+import './ItemPage.scss';
 
 //Services
 import {
     getOneFromStorage,
     getComments
-} from '../../services/hacks';
+} from '../../services/items';
 
 // Components
-import Hack from '../Hack/Hack';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import ItemsList from '../ItemsList/ItemsList';
+import Item from '../Item/Item';
 
-function HackPage({ match }) {
+function ItemPage({ match }) {
     const { id } = match.params;
 
-    const [hack] = useState(() => getOneFromStorage(id));
+    const [item] = useState(() => getOneFromStorage(id));
     const [comments, setComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
         const processData = async () => {
-            const data = await getComments(hack.kids, currentPage);
+            const data = await getComments(item.kids, currentPage);
             setComments(prevState => [...prevState, ...data]);
         };
 
         processData();
-    }, [currentPage, hack]);
+    }, [currentPage, item]);
 
-    if (!hack) {
-        return (<h2>404 Hack cannot be found 404</h2>);
+    if (!item) {
+        return (<h2>404 Item cannot be found 404</h2>);
     }
 
     const hasComments = comments.length > 0;
 
     return (
-        <div className='page hackPage'>
-            <h2>The Hacker New</h2>
-            {hack && <Hack {...hack} />}
+        <div className='page itemPage'>
+            {item && <Item {...item} />}
             {hasComments &&
                 <div>
                     <ItemsList
@@ -55,4 +54,4 @@ function HackPage({ match }) {
     );
 };
 
-export default HackPage;
+export default ItemPage;

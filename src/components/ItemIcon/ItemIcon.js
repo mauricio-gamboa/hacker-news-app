@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HackIcon(props) {
+function ItemIcon(props) {
     const {
         type
     } = props;
@@ -32,4 +32,4 @@ function HackIcon(props) {
     return getIcon(type);
 }
 
-export default HackIcon;
+export default ItemIcon;

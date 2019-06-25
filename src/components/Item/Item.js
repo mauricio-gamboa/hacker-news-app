@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // CSS
-import './Hack.scss';
+import './Item.scss';
 
 // Components
-import HackIcon from '../HackIcon/HackIcon';
+import ItemIcon from '../ItemIcon/ItemIcon';
 
-function Hack(props) {
+function Item(props) {
     const [isVoted, setIsVoted] = useState(false);
 
     const getHost = url => {
@@ -15,7 +15,6 @@ function Hack(props) {
     };
 
     const title = props.title || props.text;
-    const isComment = props.type === 'comment';
 
     return (
         <div
@@ -34,7 +33,7 @@ function Hack(props) {
                 href={props.url}
                 rel='noopener noreferrer'
                 target='_blank'>
-                {props.type && <HackIcon type={props.type} />}
+                {props.type && <ItemIcon type={props.type} />}
                 <span dangerouslySetInnerHTML={{ __html: title }} />
             </a>
 
@@ -43,7 +42,7 @@ function Hack(props) {
                 {`by ${props.by}`}
                 {props.hasComments &&
                     <span>
-                        {' | '}<Link to={`hack/${props.id}`}>{`${props.kids.length} comments`}</Link>
+                        {' | '}<Link to={`item/${props.id}`}>{`${props.kids.length} comments`}</Link>
                     </span>
                 }
                 {`${props.url ? ' |' : ''} ${getHost(props.url)}`}
@@ -52,4 +51,4 @@ function Hack(props) {
     );
 }
 
-export default Hack;
+export default Item;

@@ -4,15 +4,13 @@ import React from 'react';
 import './ItemsList.scss';
 
 // Components
-import Hack from '../Hack/Hack';
+import Item from '../Item/Item';
 
 function ItemsList(props) {
     const {
         items,
         title
     } = props;
-
-    console.log(items);
 
     if (!items.length) {
         return null;
@@ -23,11 +21,13 @@ function ItemsList(props) {
             <h2>{title}</h2>
             <ul className='itemsList'>
                 {items.map(item => {
-                    const hasComments = item && item.kids && item.length > 0;
-                    
+                    const hasComments = item &&
+                        item.kids &&
+                        item.kids.length > 0;
+
                     return (
                         <li key={item.id}>
-                            <Hack
+                            <Item
                                 {...item}
                                 hasComments={hasComments} />
                         </li>

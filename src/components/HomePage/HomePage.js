@@ -5,42 +5,42 @@ import './HomePage.scss';
 
 //Services
 import {
-	getHacksIds,
-	getHacks
-} from '../../services/hacks';
+	getItemsIds,
+	getItems
+} from '../../services/items';
 
 // Components
 import ItemsList from '../ItemsList/ItemsList';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
 function HomePage() {
-	const [hacks, setHacks] = useState([]);
+	const [items, setItems] = useState([]);
 	const [currentPage, setCurrentPage] = useState(0);
 
 	useEffect(() => {
 		const processData = async () => {
-			await getHacksIds();
-			const data = await getHacks(currentPage);
-			setHacks(prevState => [...prevState, ...data]);
+			await getItemsIds();
+			const data = await getItems(currentPage);
+			setItems(prevState => [...prevState, ...data]);
 		};
 
 		processData();
 	}, [currentPage]);
 
-	const hasHacks = hacks && hacks.length > 0;
+	const hasItems = items && items.length > 0;
 
 	return (
 		<div className='page'>
-			{hasHacks &&
-				<ItemsList
-					title={'The latest Hacker News!'}
-					items={hacks} />
-			}
-			{hasHacks &&
-				<LoadMoreButton
-					handleClick={() => setCurrentPage(currentPage + 1)}>
-					Load more hacks
-			</LoadMoreButton>
+			{hasItems &&
+				<div>
+					<ItemsList
+						title={'The latest News!'}
+						items={items} />
+					<LoadMoreButton
+						handleClick={() => setCurrentPage(currentPage + 1)}>
+						Load more News
+					</LoadMoreButton>
+				</div>
 			}
 		</div>
 	);

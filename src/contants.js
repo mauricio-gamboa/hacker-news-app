@@ -1,13 +1,13 @@
-const GET_TOP_STORIES_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json';
-const GET_HACK_URL = 'https://hacker-news.firebaseio.com/v0/item';
+const GET_TOP_ITEMS_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json';
+const GET_ITEM_URL = 'https://hacker-news.firebaseio.com/v0/item';
 const PAGE_SIZE = 5;
-const HACKS_IDS_KEY = 'hacks_ids';
-const HACKS_KEY = 'hacks';
+const ITEMS_IDS_KEY = 'items_ids';
+const ITEMS_KEY = 'items';
 
 export {
-    GET_TOP_STORIES_URL,
-    GET_HACK_URL,
+    GET_TOP_ITEMS_URL,
+    GET_ITEM_URL,
     PAGE_SIZE,
-    HACKS_IDS_KEY,
-    HACKS_KEY
+    ITEMS_IDS_KEY,
+    ITEMS_KEY
 }

@@ -1,15 +1,16 @@
-const GET_TOP_STORIES_URL = 'https://hacker-news.firebaseio.com/v0/topstories.json';
-const GET_HACK_URL = 'https://hacker-news.firebaseio.com/v0/item';
-const PAGE_SIZE = 10;
-const HACKS_IDS_KEY = 'hacks_ids';
+// Constants
+import {
+    GET_TOP_STORIES_URL,
+    GET_HACK_URL,
+    PAGE_SIZE,
+    HACKS_IDS_KEY
+} from '../contants';
 
-function setItem(key, value) {
-    window.sessionStorage.setItem(key, JSON.stringify(value));
-}
-
-function getItem(key) {
-    return JSON.parse(window.sessionStorage.getItem(key)) || [];
-}
+// Services
+import {
+    setItem,
+    getItem
+} from './store';
 
 async function getAllHacks() {
     let data = getItem(HACKS_IDS_KEY);
@@ -28,7 +29,7 @@ async function processHacks() {
     const data = await getAllHacks();
     // 2. Save them into session storage.
     setItem(HACKS_IDS_KEY, data);
-    
+
     // 3. Return them.
     return data;
 }

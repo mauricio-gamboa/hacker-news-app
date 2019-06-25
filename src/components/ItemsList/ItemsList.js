@@ -17,7 +17,7 @@ function ItemsList(props) {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <h2>{title}</h2>
             <ul className='itemsList'>
                 {items.map(item => {
@@ -34,7 +34,7 @@ function ItemsList(props) {
                     );
                 })}
             </ul>
-        </div>
+        </React.Fragment>
     );
 }
 

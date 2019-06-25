@@ -30,9 +30,9 @@ function HomePage() {
 	const hasItems = items && items.length > 0;
 
 	return (
-		<div className='page'>
+		<main className='page'>
 			{hasItems &&
-				<div>
+				<React.Fragment>
 					<ItemsList
 						title={'The latest News!'}
 						items={items} />
@@ -40,9 +40,9 @@ function HomePage() {
 						handleClick={() => setCurrentPage(currentPage + 1)}>
 						Load more News
 					</LoadMoreButton>
-				</div>
+				</React.Fragment>
 			}
-		</div>
+		</main>
 	);
 }
 

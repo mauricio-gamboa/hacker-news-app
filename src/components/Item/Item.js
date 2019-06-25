@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // CSS
 import './Item.scss';
@@ -15,39 +15,48 @@ function Item(props) {
     };
 
     const title = props.title || props.text;
+    const isComment = props.type === 'comment';
 
     return (
-        <div
+        <article
             className='item hoverForward'>
 
-            <button
-                onClick={() => setIsVoted(!isVoted)}
-                type='button'
-                className={`vote ${isVoted ? 'voted' : ''}`}>
-                <i className='fas fa-caret-up'></i>
-            </button>
+            {isComment &&
+                <div className={`title ${isVoted ? 'voted' : ''}`}>
+                    {props.type && <ItemIcon type={props.type} />}
+                    <span dangerouslySetInnerHTML={{ __html: title }} />
+                </div>}
 
-            <a
-                className={`title ${isVoted ? 'voted' : ''}`}
-                title={title}
-                href={props.url}
-                rel='noopener noreferrer'
-                target='_blank'>
-                {props.type && <ItemIcon type={props.type} />}
-                <span dangerouslySetInnerHTML={{ __html: title }} />
-            </a>
+            {!isComment &&
+                <a
+                    className={`title ${isVoted ? 'voted' : ''}`}
+                    title={title}
+                    href={props.url}
+                    rel='noopener noreferrer'
+                    target='_blank'>
+                    {props.type && <ItemIcon type={props.type} />}
+                    <span dangerouslySetInnerHTML={{ __html: title }} />
+                </a>
+            }
 
-            <div className='meta-data'>
+            <section className='meta-data'>
                 {props.score && <span>{`${props.score} points `}</span>}
                 {`by ${props.by}`}
-                {props.hasComments &&
+                {!isComment && !props.isItemPage &&
                     <span>
                         {' | '}<Link to={`item/${props.id}`}>{`${props.kids.length} comments`}</Link>
                     </span>
                 }
                 {`${props.url ? ' |' : ''} ${getHost(props.url)}`}
-            </div>
-        </div>
+
+                <button
+                    onClick={() => setIsVoted(!isVoted)}
+                    type='button'
+                    className={`vote ${isVoted ? 'voted' : ''}`}>
+                    <i className='fas fa-caret-up'></i>
+                </button>
+            </section>
+        </article>
     );
 }
 

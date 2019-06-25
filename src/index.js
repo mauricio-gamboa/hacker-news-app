@@ -11,10 +11,10 @@ import ItemPage from './components/ItemPage/ItemPage';
 
 const routing = (
     <Router>
-        <div>
+        <React.Fragment>
             <Route exact path='/' component={HomePage} />
             <Route path='/item/:id' component={ItemPage} />
-        </div>
+        </React.Fragment>
     </Router>
 );
 

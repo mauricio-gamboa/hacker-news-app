@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // CSS
 import './ItemPage.scss';
@@ -23,6 +24,10 @@ function ItemPage({ match }) {
 
     useEffect(() => {
         const processData = async () => {
+            if (!item) {
+                return;
+            }
+
             const data = await getComments(item.kids, currentPage);
             setComments(prevState => [...prevState, ...data]);
         };
@@ -37,20 +42,22 @@ function ItemPage({ match }) {
     const hasComments = comments.length > 0;
 
     return (
-        <div className='page itemPage'>
-            {item && <Item {...item} />}
+        <main className='page itemPage'>
+            <h2>Go back to <Link to='/'><i className='fas fa-home'></i></Link></h2>
+            {item && <Item isItemPage={true} {...item} />}
             {hasComments &&
-                <div>
+                <React.Fragment>
                     <ItemsList
+                        isItemPage={true}
                         items={comments}
-                        title={'Its Comments:'} />
+                        title={'Comments'} />
                     <LoadMoreButton
                         handleClick={() => setCurrentPage(currentPage + 1)}>
                         Load more comments
                     </LoadMoreButton>
-                </div>
+                </React.Fragment>
             }
-        </div>
+        </main>
     );
 };
 

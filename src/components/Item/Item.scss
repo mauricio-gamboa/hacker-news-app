@@ -3,32 +3,32 @@
     box-shadow: 0 2px 5px 0 rgba(19, 41, 104, .2);
     border-radius: 8px;
     background-color: white;
-    position: relative;
-    .vote {
-        position: absolute;
-        right: 16px;
-        top: 0;
-        z-index: 100;
-        font-size: 25px;
-        &:hover {
-            color: #ff6600;
-        }
-        &.voted {
-            color: #ff6600;
-        }
-        &:focus {
-            outline: 0;
-        }
-    }
     .meta-data {
         font-size: 10px;
         padding-top: 4px;
         border-top: 1px solid #f1f2f6;
+        position: relative;
+        .vote {
+            position: absolute;
+            right: 0;
+            bottom: -10px;
+            z-index: 100;
+            font-size: 25px;
+            &:hover {
+                color: #ff6600;
+            }
+            &.voted {
+                color: #ff6600;
+            }
+            &:focus {
+                outline: 0;
+            }
+        }
     }
     .title {
         display: inline-block;
         position: relative;
-        padding-left: 16px;
+        padding-left: 20px;
         text-decoration: none;
         color: inherit;
         font-size: 14px;

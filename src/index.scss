@@ -173,4 +173,12 @@ button {
 
 .page {
     padding: 16px;
+    h2 {
+        a {
+            color: inherit;
+            &:hover {
+                color: #ff6600;
+            }
+        }
+    }
 }

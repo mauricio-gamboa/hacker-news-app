@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // CSS
 import './HackPage.scss';
 
 //Services
 import {
-    getOneFromStorage
+    getOneFromStorage,
+    getComments
 } from '../../services/hacks';
 
 // Components
@@ -18,15 +19,14 @@ function HackPage({ match }) {
     const [comments, setComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
-    // useEffect(() => {
-    // 	const getHacksFromAPI = async () => {
-    // 		await processHacks();
-    // 		const data = await getHacks(currentPage);
-    // 		setHacks(prevState => [...prevState, ...data]);
-    // 	};
+    useEffect(() => {
+        const getCommentsFromAPI = async () => {
+            const data = await getComments(hack.kids, currentPage);
+            setComments(prevState => [...prevState, ...data]);
+        };
 
-    // 	getHacksFromAPI();
-    // }, [currentPage]);
+        getCommentsFromAPI();
+    }, [currentPage]);
 
     if (!hack) {
         return (<h2>404 Hack cannot be found 404</h2>);

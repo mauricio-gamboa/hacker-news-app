@@ -49,14 +49,13 @@ async function getOneHack(id) {
 
 async function getHacks(currentPage = 0) {
     const ids = getItem(HACKS_IDS_KEY);
-    const data = [];
 
     if (!ids.length) {
         return data;
     }
 
-    const multiplier = currentPage * PAGE_SIZE;
-    const range = ids.slice(multiplier, multiplier + PAGE_SIZE);
+    const range = getRange(ids, currentPage);
+    const data = [];
 
     for (let i = 0; i < range.length; i++) {
         const hack = await getOneHack(range[i]);
@@ -76,8 +75,34 @@ function getOneFromStorage(id) {
     return found;
 }
 
+async function getComments(commentsIds, currentPage = 0) {
+    const range = getRange(commentsIds, currentPage);
+    let comments = [];
+
+    for (let i = 0; i < range.length; i++) {
+        const comment = await getOneHack(range[i]);
+        comments.push(comment);
+    }
+
+    return comments;
+}
+
+function getRange(array, delimiter) {
+    let range = [];
+
+    if (!array.length) {
+        return range;
+    }
+
+    const multiplier = delimiter * PAGE_SIZE;
+    range = array.slice(multiplier, multiplier + PAGE_SIZE);
+
+    return range;
+}
+
 export {
     processHacks,
     getHacks,
-    getOneFromStorage
+    getOneFromStorage,
+    getComments
 };

@@ -1,9 +1,9 @@
 function setItem(key, value) {
-    window.sessionStorage.setItem(key, JSON.stringify(value));
+    window.localStorage.setItem(key, JSON.stringify(value));
 }
 
 function getItem(key) {
-    return JSON.parse(window.sessionStorage.getItem(key)) || [];
+    return JSON.parse(window.localStorage.getItem(key)) || [];
 }
 
 export {

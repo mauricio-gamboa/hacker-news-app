@@ -30,7 +30,7 @@ function HomePage() {
 	const hasHacks = hacks && hacks.length > 0;
 
 	return (
-		<div className='app'>
+		<div className='page'>
 			{hasHacks && <HacksList hacks={hacks} />}
 			{hasHacks && <LoadMoreButton
 				handleClick={() => setCurrentPage(currentPage + 1)} />}

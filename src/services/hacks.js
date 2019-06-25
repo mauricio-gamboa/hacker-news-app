@@ -70,7 +70,14 @@ async function getHacks(currentPage = 0) {
     return data;
 }
 
+function getOneFromStorage(id) {
+    const hacks = getItem(HACKS_KEY);
+    const found = hacks.find(hack => hack.id == id);
+    return found;
+}
+
 export {
     processHacks,
-    getHacks
+    getHacks,
+    getOneFromStorage
 };

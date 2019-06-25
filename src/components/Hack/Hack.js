@@ -35,7 +35,7 @@ function Hack(props) {
                 <i className='fas fa-caret-up'></i>
             </button>
             <a
-                className='title'
+                className={`title ${isVoted ? 'voted' : ''}`}
                 title={title}
                 href={url}
                 rel='noopener noreferrer'

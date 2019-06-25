@@ -20,11 +20,6 @@
             outline: 0;
         }
     }
-    &:hover {
-        i {
-            color: #ff6600;
-        }
-    }
     .meta-data {
         font-size: 10px;
         padding-top: 4px;
@@ -38,6 +33,12 @@
         color: inherit;
         font-size: 14px;
         padding-bottom: 4px;
+        &:hover,
+        &.voted {
+            i {
+                color: #ff6600;
+            }
+        }
         i {
             position: absolute;
             left: 0;

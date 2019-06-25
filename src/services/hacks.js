@@ -47,7 +47,7 @@ async function getHacks(currentPage = 0) {
         return data;
     }
 
-    const start = currentPage + currentPage;
+    const start = currentPage * PAGE_SIZE;
     const end = (PAGE_SIZE * currentPage) + PAGE_SIZE;
     const range = ids.slice(start, end);
 

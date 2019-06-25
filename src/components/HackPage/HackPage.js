@@ -12,6 +12,7 @@ import {
 // Components
 import Hack from '../Hack/Hack';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
+import ItemsList from '../ItemsList/ItemsList';
 
 function HackPage({ match }) {
     const { id } = match.params;
@@ -27,22 +28,28 @@ function HackPage({ match }) {
         };
 
         processData();
-    }, [currentPage]);
+    }, [currentPage, hack]);
 
     if (!hack) {
         return (<h2>404 Hack cannot be found 404</h2>);
     }
 
-    const hasComments = hack && hack.kids && hack.kids.length > 0;
+    const hasComments = comments.length > 0;
 
     return (
         <div className='page hackPage'>
+            <h2>The Hacker New</h2>
             {hack && <Hack {...hack} />}
             {hasComments &&
-                <LoadMoreButton
-                    handleClick={() => setCurrentPage(currentPage + 1)}>
-                    Load more comments
-                </LoadMoreButton>
+                <div>
+                    <ItemsList
+                        items={comments}
+                        title={'Its Comments:'} />
+                    <LoadMoreButton
+                        handleClick={() => setCurrentPage(currentPage + 1)}>
+                        Load more comments
+                    </LoadMoreButton>
+                </div>
             }
         </div>
     );

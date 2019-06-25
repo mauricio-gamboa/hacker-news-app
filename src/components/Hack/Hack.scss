@@ -1,4 +1,4 @@
-.hack {
+.item {
     padding: 16px;
     box-shadow: 0 2px 5px 0 rgba(19, 41, 104, .2);
     border-radius: 8px;
@@ -35,11 +35,11 @@
         padding-bottom: 4px;
         &:hover,
         &.voted {
-            i {
+            .fas {
                 color: #ff6600;
             }
         }
-        i {
+        .fas {
             position: absolute;
             left: 0;
             top: 4px;

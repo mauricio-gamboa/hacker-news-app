@@ -10,7 +10,7 @@ import {
 } from '../../services/hacks';
 
 // Components
-import HacksList from '../HacksList/HacksList';
+import ItemsList from '../ItemsList/ItemsList';
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
 function HomePage() {
@@ -31,7 +31,11 @@ function HomePage() {
 
 	return (
 		<div className='page'>
-			{hasHacks && <HacksList hacks={hacks} />}
+			{hasHacks &&
+				<ItemsList
+					title={'The latest Hacker News!'}
+					items={hacks} />
+			}
 			{hasHacks &&
 				<LoadMoreButton
 					handleClick={() => setCurrentPage(currentPage + 1)}>

@@ -3,6 +3,23 @@
     box-shadow: 0 2px 5px 0 rgba(19, 41, 104, .2);
     border-radius: 8px;
     background-color: white;
+    position: relative;
+    .vote {
+        position: absolute;
+        right: 16px;
+        top: 0;
+        z-index: 100;
+        font-size: 25px;
+        &:hover {
+            color: #ff6600;
+        }
+        &.voted {
+            color: #ff6600;
+        }
+        &:focus {
+            outline: 0;
+        }
+    }
     &:hover {
         i {
             color: #ff6600;

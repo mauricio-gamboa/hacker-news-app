@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // CSS
@@ -18,6 +18,8 @@ function Hack(props) {
         id
     } = props;
 
+    const [isVoted, setIsVoted] = useState(false);
+
     const getHost = url => {
         return url ? new URL(url).host : '';
     };
@@ -26,6 +28,12 @@ function Hack(props) {
         <div
             className='hack hoverForward'
             title={title}>
+            <button
+                onClick={() => setIsVoted(!isVoted)}
+                type='button'
+                className={`vote ${isVoted ? 'voted' : ''}`}>
+                <i className='fas fa-caret-up'></i>
+            </button>
             <a
                 className='title'
                 title={title}

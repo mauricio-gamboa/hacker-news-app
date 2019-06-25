@@ -1,5 +1,8 @@
 import React from 'react';
 
+// CSS
+import './HacksList.scss';
+
 // Components
 import Hack from '../Hack/Hack';
 
@@ -13,11 +16,14 @@ function HacksList(props) {
     }
 
     return (
-        <ul>
-            {hacks.map(hack => {
-                return (<li><Hack key={hack.id} {...hack} /></li>);
-            })}
-        </ul>
+        <div>
+            <h2>The latest hacker news:</h2>
+            <ul className='hacksList'>
+                {hacks.map(hack => {
+                    return (<li key={hack.id}><Hack {...hack} /></li>);
+                })}
+            </ul>
+        </div>
     );
 }
 

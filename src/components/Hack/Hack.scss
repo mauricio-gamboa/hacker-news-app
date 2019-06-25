@@ -1,0 +1,23 @@
+.hack {
+    text-decoration: none;
+    padding: 16px;
+    box-shadow: 0 2px 5px 0 rgba(19, 41, 104, .2);
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+    font-size: 14px;
+    display: block;
+    color: inherit;
+    &>span {
+        display: block;
+        border-bottom: 1px solid #f1f2f6;
+        padding: 4px 0;
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0px;
+        }
+    }
+    .meta-data {
+        font-size: 10px;
+    }
+}

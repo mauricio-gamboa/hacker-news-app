@@ -40,6 +40,7 @@ function ItemPage({ match }) {
     }
 
     const hasComments = comments.length > 0;
+    const allCommentsShown = comments.length === item.kids.length;
 
     return (
         <main className='page itemPage'>
@@ -51,10 +52,12 @@ function ItemPage({ match }) {
                         isItemPage={true}
                         items={comments}
                         title={'Comments'} />
-                    <LoadMoreButton
-                        handleClick={() => setCurrentPage(currentPage + 1)}>
-                        Load more comments
-                    </LoadMoreButton>
+                    {!allCommentsShown &&
+                        <LoadMoreButton
+                            handleClick={() => setCurrentPage(currentPage + 1)}>
+                            Load more comments
+                        </LoadMoreButton>
+                    }
                 </React.Fragment>
             }
         </main>

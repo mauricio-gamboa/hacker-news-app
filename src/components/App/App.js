@@ -16,7 +16,7 @@ function App() {
 	const [hacks, setHacks] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 
-	// This effect gets the tours from the JSON.
+	// This effect gets the hacks from the JSON.
 	useEffect(() => {
 		const _processHacks = async () => {
 			const data = await processHacks();

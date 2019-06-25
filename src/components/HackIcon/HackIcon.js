@@ -13,7 +13,7 @@ function HackIcon(props) {
                 icon = <i className='fas fa-user-md'></i>;
                 break;
             case 'story':
-                icon = <i className='fab fa-telegram-plane'></i>;
+                icon = <i className="fas fa-book"></i>;
                 break;
             case 'poll':
             case 'pollopt':
@@ -29,7 +29,7 @@ function HackIcon(props) {
         return icon;
     };
 
-    return (getIcon(type));
+    return getIcon(type);
 }
 
 export default HackIcon;

@@ -25,12 +25,8 @@ async function getAllHacks() {
 }
 
 async function processHacks() {
-    // 1. Get the hacks from the HN API.
     const data = await getAllHacks();
-    // 2. Save them into session storage.
     setItem(HACKS_IDS_KEY, data);
-
-    // 3. Return them.
     return data;
 }
 
@@ -43,7 +39,7 @@ async function getOneHack(id) {
     return data;
 }
 
-async function getHacks(currentPage = 1) {
+async function getHacks(currentPage = 0) {
     const ids = getItem(HACKS_IDS_KEY);
     const data = [];
 
@@ -51,8 +47,12 @@ async function getHacks(currentPage = 1) {
         return data;
     }
 
-    for (let i = 0; i < (currentPage * PAGE_SIZE); i++) {
-        const hack = await getOneHack(ids[i]);
+    const start = currentPage + currentPage;
+    const end = (PAGE_SIZE * currentPage) + PAGE_SIZE;
+    const range = ids.slice(start, end);
+
+    for (let i = 0; i < range.length; i++) {
+        const hack = await getOneHack(range[i]);
         data.push(hack);
     }
 

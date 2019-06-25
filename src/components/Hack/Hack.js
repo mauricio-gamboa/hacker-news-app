@@ -25,6 +25,7 @@ function Hack(props) {
             className='hack hoverForward'
             title={title}
             href={url}
+            rel='noopener noreferrer'
             target='_blank'>
             <span className='title'>
                 {type && <HackIcon type={type} />}

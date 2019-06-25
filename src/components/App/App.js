@@ -3,53 +3,38 @@ import React, { useState, useEffect } from 'react';
 // CSS
 import './App.scss';
 
-// Constants
-import {
-	HACKS_KEY
-} from '../../contants';
-
 //Services
 import {
 	processHacks,
 	getHacks
 } from '../../services/hacks';
 
-import {
-	setItem
-} from '../../services/store';
-
 // Components
 import HacksList from '../HacksList/HacksList';
+import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
 function App() {
 	const [hacks, setHacks] = useState([]);
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(0);
 
-	// Helper function to get the hacks from API.
-	const getHacksFromAPI = async currentPage => {
-		await processHacks();
-		const data = await getHacks(currentPage);
-		return data;
-	};
 
-	// This effect gets the hacks from the API.
 	useEffect(() => {
-		const getHacks = async () => {
-			const hacks = await getHacksFromAPI(currentPage);
-			setHacks(prevState => [...prevState, ...hacks]);
+		const getHacksFromAPI = async () => {
+			await processHacks();
+			const data = await getHacks(currentPage);
+			setHacks(prevState => [...prevState, ...data]);
 		};
 
-		getHacks();
-	}, []);
+		getHacksFromAPI();
+	}, [currentPage]);
 
-	// This effect saves the hacks in session storage.
-	useEffect(() => {
-		setItem(HACKS_KEY, hacks);
-	}, [hacks]);
+	const hasHacks = hacks && hacks.length > 0;
 
 	return (
 		<div className='app'>
-			{hacks && <HacksList hacks={hacks} />}
+			{hasHacks && <HacksList hacks={hacks} />}
+			{hasHacks && <LoadMoreButton
+				handleClick={() => setCurrentPage(currentPage + 1)} />}
 		</div>
 	);
 }

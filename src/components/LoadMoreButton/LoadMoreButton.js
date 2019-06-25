@@ -1,10 +1,11 @@
+import React from 'react';
+
 // CSS
-import './LoadMoreButton.css';
+import './LoadMoreButton.scss';
 
 function LoadMoreButton(props) {
     const {
-        handleClick,
-        children
+        handleClick
     } = props;
 
     return (
@@ -12,7 +13,7 @@ function LoadMoreButton(props) {
             type='button'
             className='mainButton hoverBuzzOut'
             onClick={handleClick}>
-            {children}
+            Load More Hacks
         </button>
     );
 }

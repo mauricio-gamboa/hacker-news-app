@@ -91,11 +91,11 @@ async function getRange(array, chunck) {
     range = array.slice(pageChunk, pageChunk + PAGE_SIZE);
 
     for (let i = 0; i < range.length; i++) {
-        const item = await getOneItem(range[i]);
+        const item = getOneItem(range[i]);
         data.push(item);
     }
 
-    return data;
+    return Promise.all(data);
 }
 
 export {

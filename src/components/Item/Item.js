@@ -13,6 +13,10 @@ function Item(props) {
         return url ? new URL(url).host : '';
     };
 
+    if(props.deleted) {
+        return null;
+    }
+
     const title = props.title || props.text;
     const isComment = props.type && props.type === 'comment';
 

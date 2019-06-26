@@ -73,6 +73,13 @@ describe('Item', () => {
             const title = container.querySelector('div.title');
             expect(wrapper).toContainElement(title);
         });
+
+        test('deleted comments', () => {
+            item.deleted = true;
+            const { container } = render(<Item {...item} />);
+            const wrapper = container.querySelector('.item')
+            expect(wrapper).toBeNull();
+        });
     });
 
     describe('voted item', () => {

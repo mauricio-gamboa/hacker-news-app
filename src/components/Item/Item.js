@@ -14,12 +14,17 @@ function Item(props) {
     };
 
     const title = props.title || props.text;
-    const isComment = props.type === 'comment';
+    const isComment = props.type && props.type === 'comment';
 
     const displayCommentsLink = !isComment &&
+        props.id &&
         props.kids &&
         props.kids.length &&
         !props.isItemPage;
+
+    const isTitleLink = !isComment &&
+        props.url &&
+        props.type;
 
     return (
         <article
@@ -31,7 +36,7 @@ function Item(props) {
                     <span dangerouslySetInnerHTML={{ __html: title }} />
                 </div>}
 
-            {!isComment &&
+            {isTitleLink &&
                 <a
                     className={`title ${isVoted ? 'voted' : ''}`}
                     title={title}
@@ -45,13 +50,13 @@ function Item(props) {
 
             <section className='meta-data'>
                 {props.score && <span>{`${props.score} points `}</span>}
-                {`by ${props.by}`}
+                {props.by && <span>{`by ${props.by}`}</span>}
                 {displayCommentsLink &&
                     <span>
                         {' | '}<a href={`item/${props.id}`}>{`${props.kids.length} comments`}</a>
                     </span>
                 }
-                {`${props.url ? ' |' : ''} ${getHost(props.url)}`}
+                {props.url && <span>{`${props.url ? ' |' : ''} ${getHost(props.url)}`}</span>}
 
                 <button
                     onClick={() => setIsVoted(!isVoted)}

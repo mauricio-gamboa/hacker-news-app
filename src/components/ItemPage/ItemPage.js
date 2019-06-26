@@ -14,10 +14,10 @@ import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import ItemsList from '../ItemsList/ItemsList';
 import Item from '../Item/Item';
 
-function ItemPage(routeParams) {
-    const { id } = routeParams.match.params;
+function ItemPage(props) {
+    const { match } = props;
 
-    const [item] = useState(() => getOneFromStorage(id));
+    const [item] = useState(() => getOneFromStorage(match.params.id));
     const [comments, setComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -35,7 +35,11 @@ function ItemPage(routeParams) {
     }, [currentPage, item]);
 
     if (!item) {
-        return (<h2>404 Item cannot be found 404</h2>);
+        return (
+            <div className='page itemPage'>
+                <h2>404 Item cannot be found 404 <a href='/'><i className='fas fa-home'></i></a></h2>
+            </div>
+        );
     }
 
     const hasComments = comments.length > 0;

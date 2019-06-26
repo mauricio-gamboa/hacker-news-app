@@ -4,14 +4,14 @@ import ItemPage from './ItemPage';
 
 describe('ItemPage', () => {
     it('renders without crashing (smoke tests)', () => {
-        const routeParams = {
+        const props = {
             match: {
                 params: {}
             }
         };
 
         const div = document.createElement('div');
-        ReactDOM.render(<ItemPage {...routeParams} />, div);
+        ReactDOM.render(<ItemPage {...props} />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
 });

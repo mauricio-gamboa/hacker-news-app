@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ItemPage from './ItemPage';
 
 describe('ItemPage', () => {
-    it('renders without crashing (smoke tests)', () => {
+    test('renders without crashing (smoke tests)', () => {
         const props = {
             match: {
                 params: {}

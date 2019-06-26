@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 import ItemIcon from './ItemIcon';
 
 describe('ItemIcon', () => {
-    it('renders without crashing (smoke tests)', () => {
+    test('renders without crashing (smoke tests)', () => {
         const div = document.createElement('div');
         ReactDOM.render(<ItemIcon />, div);
         ReactDOM.unmountComponentAtNode(div);

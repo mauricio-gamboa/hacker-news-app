@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Item from './Item';
 
 describe('Item', () => {
-    it('renders without crashing (smoke tests)', () => {
+    test('renders without crashing (smoke tests)', () => {
         const props = {
             kids: [{}]
         };

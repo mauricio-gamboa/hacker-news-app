@@ -24,4 +24,16 @@ describe('LoadMoreButton', () => {
         fireEvent.click(button);
         expect(handleClickMock).toHaveBeenCalledTimes(1);
     });
+
+    test('displays spinner if items are loading', () => {
+        const { container } = render(<LoadMoreButton isLoading={true} />);
+        const spinner = container.querySelector('.fa-spinner');
+        expect(spinner).toBeInTheDocument();
+    });
+
+    test('displays spinner if items are not loading', () => {
+        const { container } = render(<LoadMoreButton isLoading={false} />);
+        const spinner = container.querySelector('.fa-spinner');
+        expect(spinner).not.toBeInTheDocument();
+    });
 });

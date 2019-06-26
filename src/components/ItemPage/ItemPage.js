@@ -13,6 +13,7 @@ import {
 import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import ItemsList from '../ItemsList/ItemsList';
 import Item from '../Item/Item';
+import Spinner from '../Spinner/Spinner'
 
 function ItemPage(props) {
     const { match } = props;
@@ -20,6 +21,7 @@ function ItemPage(props) {
     const [item] = useState(() => getOneFromStorage(match.params.id));
     const [comments, setComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const processData = async () => {
@@ -27,7 +29,9 @@ function ItemPage(props) {
                 return;
             }
 
+            setIsLoading(true);
             const data = await getComments(item.kids, currentPage);
+            setIsLoading(false);
             setComments(prevState => [...prevState, ...data]);
         };
 
@@ -49,6 +53,7 @@ function ItemPage(props) {
         <main className='page itemPage'>
             <h2>Go back to <a href='/'><i className='fas fa-home'></i></a></h2>
             {item && <Item isItemPage={true} {...item} />}
+            {isLoading && !hasComments && <Spinner />}
             {hasComments &&
                 <React.Fragment>
                     <ItemsList
@@ -57,6 +62,7 @@ function ItemPage(props) {
                         title={'Comments'} />
                     {!allCommentsShown &&
                         <LoadMoreButton
+                            isLoading={isLoading}
                             handleClick={() => setCurrentPage(currentPage + 1)}>
                             Load more comments
                         </LoadMoreButton>

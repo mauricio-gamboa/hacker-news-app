@@ -6,7 +6,8 @@ import './LoadMoreButton.scss';
 function LoadMoreButton(props) {
     const {
         handleClick,
-        children
+        children,
+        isLoading
     } = props;
 
     return (
@@ -15,6 +16,10 @@ function LoadMoreButton(props) {
             className='loadMoreButton'
             onClick={handleClick}>
             {children}
+            {' '}
+            {isLoading &&
+                <i className='fas fa-spinner fa-spin' />
+            }
         </button>
     );
 }

@@ -16,6 +16,11 @@ function Item(props) {
     const title = props.title || props.text;
     const isComment = props.type === 'comment';
 
+    const displayCommentsLink = !isComment &&
+        props.kids &&
+        props.kids.length &&
+        !props.isItemPage;
+
     return (
         <article
             className='item hoverForward'>
@@ -41,7 +46,7 @@ function Item(props) {
             <section className='meta-data'>
                 {props.score && <span>{`${props.score} points `}</span>}
                 {`by ${props.by}`}
-                {!isComment && !props.isItemPage &&
+                {displayCommentsLink &&
                     <span>
                         {' | '}<a href={`item/${props.id}`}>{`${props.kids.length} comments`}</a>
                     </span>

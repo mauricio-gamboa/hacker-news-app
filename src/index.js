@@ -10,12 +10,14 @@ import HomePage from './components/HomePage/HomePage';
 import ItemPage from './components/ItemPage/ItemPage';
 
 const routing = (
-    <Router>
-        <React.Fragment>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/item/:id' component={ItemPage} />
-        </React.Fragment>
-    </Router>
+    <div>
+        <Router>
+            <div>
+                <Route exact path='/' component={HomePage} />
+                <Route path='/item/:id' component={ItemPage} />
+            </div>
+        </Router>
+    </div>
 );
 
 ReactDOM.render(routing, document.getElementById('root'));

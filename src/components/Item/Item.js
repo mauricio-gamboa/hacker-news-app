@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 // CSS
 import './Item.scss';
@@ -44,7 +43,7 @@ function Item(props) {
                 {`by ${props.by}`}
                 {!isComment && !props.isItemPage &&
                     <span>
-                        {' | '}<Link to={`item/${props.id}`}>{`${props.kids.length} comments`}</Link>
+                        {' | '}<a href={`item/${props.id}`}>{`${props.kids.length} comments`}</a>
                     </span>
                 }
                 {`${props.url ? ' |' : ''} ${getHost(props.url)}`}

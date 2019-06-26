@@ -34,7 +34,7 @@ function HomePage() {
 			{hasItems &&
 				<React.Fragment>
 					<ItemsList
-						title={'The latest News!'}
+						title={'The latest News from HN!'}
 						items={items} />
 					<LoadMoreButton
 						handleClick={() => setCurrentPage(currentPage + 1)}>

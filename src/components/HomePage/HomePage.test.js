@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './HomePage';
+import HomePage from './HomePage';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('HomePage', () => {
+	it('renders without crashing (smoke tests)', () => {
+		const div = document.createElement('div');
+		ReactDOM.render(<HomePage />, div);
+		ReactDOM.unmountComponentAtNode(div);
+	});
 });

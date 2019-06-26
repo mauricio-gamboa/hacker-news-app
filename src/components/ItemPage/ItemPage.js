@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 // CSS
 import './ItemPage.scss';
@@ -15,8 +14,8 @@ import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 import ItemsList from '../ItemsList/ItemsList';
 import Item from '../Item/Item';
 
-function ItemPage({ match }) {
-    const { id } = match.params;
+function ItemPage(routeParams) {
+    const { id } = routeParams.match.params;
 
     const [item] = useState(() => getOneFromStorage(id));
     const [comments, setComments] = useState([]);
@@ -44,7 +43,7 @@ function ItemPage({ match }) {
 
     return (
         <main className='page itemPage'>
-            <h2>Go back to <Link to='/'><i className='fas fa-home'></i></Link></h2>
+            <h2>Go back to <a href='/'><i className='fas fa-home'></i></a></h2>
             {item && <Item isItemPage={true} {...item} />}
             {hasComments &&
                 <React.Fragment>

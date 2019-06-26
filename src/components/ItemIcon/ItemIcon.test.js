@@ -14,30 +14,30 @@ describe('ItemIcon', () => {
     test('renders the icon class for jobs', () => {
         const { container } = render(<ItemIcon type={'job'} />);
         const button = container.querySelector('i');
-        expect(button).toHaveClass('fas fa-user-md');
+        expect(button).toHaveClass('fa-user-md');
     });
 
     test('renders the icon class for stories', () => {
         const { container } = render(<ItemIcon type={'story'} />);
         const button = container.querySelector('i');
-        expect(button).toHaveClass('fas fa-book');
+        expect(button).toHaveClass('fa-book');
     });
 
     test('renders the icon class for polls', () => {
         const { container } = render(<ItemIcon type={'poll'} />);
         const button = container.querySelector('i');
-        expect(button).toHaveClass('fas fa-poll');
+        expect(button).toHaveClass('fa-poll');
     });
 
     test('renders the icon class for pollopts', () => {
         const { container } = render(<ItemIcon type={'pollopt'} />);
         const button = container.querySelector('i');
-        expect(button).toHaveClass('fas fa-poll');
+        expect(button).toHaveClass('fa-poll');
     });
 
     test('renders the icon class for comments', () => {
         const { container } = render(<ItemIcon type={'comment'} />);
         const button = container.querySelector('i');
-        expect(button).toHaveClass('fas fa-comments');
+        expect(button).toHaveClass('fa-comments');
     });
 });

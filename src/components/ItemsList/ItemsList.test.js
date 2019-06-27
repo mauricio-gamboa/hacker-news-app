@@ -41,7 +41,7 @@ describe('ItemsList', () => {
     });
 
     test('renders the correct title', () => {
-        const text = 'Werkspot rocks!';
+        const text = 'This app rocks!';
         const { container } = render(<ItemsList items={items} title={text} />);
         const title = container.querySelector('h2');
         expect(title.textContent).toBe(text);

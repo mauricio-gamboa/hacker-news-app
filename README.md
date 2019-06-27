@@ -10,7 +10,7 @@ The application code will be reviewed and the application itself will be tested 
 
 You don't have to worry with the back-end implementation. When testing we'll make sure we serve the files on this repository properly.
 
-Imagine that you are already working at Werkspot, we want to build an improved version of HN and you were assigned the task to start it's front-end implementation.
+Imagine that we want to build an improved version of HN and you were assigned the task to start it's front-end implementation.
 
 From the moment we send you this repository, you have 48 hours to work on it.
 

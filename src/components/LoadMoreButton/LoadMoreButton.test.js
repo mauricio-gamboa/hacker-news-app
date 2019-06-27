@@ -12,7 +12,7 @@ describe('LoadMoreButton', () => {
     });
 
     test('reders the correct text', () => {
-        const text = 'Werkspot is really cool.'
+        const text = 'This app is really cool.'
         const { getByText } = render(<LoadMoreButton>{text}</LoadMoreButton>);
         expect(getByText(text)).toBeInTheDocument();
     });
